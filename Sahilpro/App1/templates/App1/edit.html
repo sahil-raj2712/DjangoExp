@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><title>Edit</title></head>
+<body>
+  <style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:#f5f5f3;display:flex;align-items:center;justify-content:center;min-height:100vh}
+  .card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.75rem;width:400px}
+  .back{font-size:13px;color:#666;text-decoration:none;display:inline-block;margin-bottom:1rem}
+  h2{font-size:18px;font-weight:600;margin-bottom:1.5rem}
+  label{font-size:12px;color:#666;display:block;margin-bottom:4px}
+  input{width:100%;padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;margin-bottom:14px}
+  .row{display:flex;gap:10px;margin-top:.5rem}
+  .btn-save{flex:1;padding:10px;background:#4f46e5;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer}
+  .btn-cancel{flex:1;padding:10px;background:none;border:1px solid #d1d5db;border-radius:8px;font-size:14px;cursor:pointer;text-decoration:none;text-align:center;color:#111}
+</style>
+
+<div class="card">
+  <a href="{% url 'home' %}" class="back">← Back</a>
+  <h2>Edit student</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label>Name</label>
+    <input type="text" name="name" value="{{ student.name }}" required>
+    <label>Email</label>
+    <input type="email" name="email" value="{{ student.email }}" required>
+    <label>Age</label>
+    <input type="number" name="age" value="{{ student.age }}" required>
+    <label>Course</label>
+    <input type="text" name="course" value="{{ student.course }}" required>
+    <div class="row">
+      <a href="{% url 'home' %}" class="btn-cancel">Cancel</a>
+      <button type="submit" class="btn-save">Save changes</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
